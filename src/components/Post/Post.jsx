@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import PropTypes from "prop-types"
 
 const Post = ({post}) => {
     const navigate = useNavigate()
@@ -21,5 +21,7 @@ const Post = ({post}) => {
         </div>
     );
 };
-
+Post.propTypes = {
+    post:PropTypes.object
+}
 export default Post;
