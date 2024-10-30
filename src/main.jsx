@@ -12,11 +12,15 @@ import Navbar from './components/Navbar/Navbar';
 import Contact from './components/Contact/Contact';
 import Users from './components/Users/Users';
 import UserDetails from './components/UserDetails/UserDetails.jsx';
+import Posts from './components/Posts/Posts.jsx';
+import PostDetails from './components/PostDetails/PostDetails.jsx';
+import Error from './components/Error/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Navbar></Navbar>,
+    errorElement: <Error></Error>,
     children: [
         {
           path: '/about',
@@ -39,6 +43,16 @@ const router = createBrowserRouter([
           path: '/user/:id',
           loader: ({params}) => fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
           element: <UserDetails></UserDetails>
+        },
+        {
+          path:'/posts',
+          loader: () => fetch('https://jsonplaceholder.typicode.com/posts'),
+          element: <Posts></Posts>
+        },
+        {
+          path:'/posts/:id',
+          loader: ({params}) => fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`),
+          element: <PostDetails></PostDetails>
         }
     ]
   }
